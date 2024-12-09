@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import linkService from "../services/linkService";
+import "../App.css"
 
 export function ShowLink(props) {
   const navigate = useNavigate()
@@ -15,17 +16,12 @@ export function ShowLink(props) {
     }
   };
   return (
-    <div>
-      <div key={props.link._id}>
-        <p>Title: {props.link.title}</p>
-        <div>
-        <p>Url: {props.link.url}</p>
+    <div >
+      <div className="linkcompocontainer" key={props.link._id}>
+        <p>{props.link.title}</p>
         <a href={props.link.url} target="_blank" rel="noopener noreferrer">Visit</a>
-        <br></br>
         <a href={`/links/${props.link._id}`}>Edit</a>
         <button onClick={handleDelete} >Delete</button>
-        
-        </div>
       </div>
     </div>
   );

@@ -84,7 +84,7 @@ const EditPage = () => {
       />
       <input
         type="text"
-        placeholder="Page Slug (e.g., your-name)"
+        placeholder="domian of page"
         value={newSlug}
         onChange={(e) => setNewSlug(e.target.value)}
         required

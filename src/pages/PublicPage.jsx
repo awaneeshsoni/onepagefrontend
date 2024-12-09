@@ -5,6 +5,7 @@ import pageService from "../services/pageService";
 const PublicPage = () => {
   const { slug } = useParams();
   const [page, setPage] = useState({});
+  const [bturl, setBturl] = useState(false)
 
   useEffect(() => {
     async function fetchPage(){
@@ -25,12 +26,13 @@ const PublicPage = () => {
           <h1>{page.title}</h1>
           {page.links?.map((link) => (
             <div key={link._id}>
-              <p>{link.title}</p>
               <a href={link.url} target="_blank" rel="noopener noreferrer">
-                {link.url}
+                {link.title}
               </a>
+              <hr></hr>
             </div>
           ))}
+          <p>made with <a href="https://inonepage.vercel.app">OnePage</a></p>
         </div>
       ) : (
         <p>looks like you forgot to get the full url</p>

@@ -53,7 +53,7 @@ const CreatePage = () => {
       />
       <input
         type="text"
-        placeholder="Page Slug (e.g., your-name)"
+        placeholder="domain of page"
         value={slug}
         onChange={(e) => setSlug(e.target.value)}
         required
