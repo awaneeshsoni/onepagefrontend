@@ -15,6 +15,7 @@ const CreateLink = () => {
     //   alert("Link added successfully!");
       navigate('/dashboard');
     } catch (error) {
+      alert("Error creating link!")
       console.error("Error adding link:", error.message);
     }
   };

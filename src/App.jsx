@@ -10,6 +10,7 @@ import PublicPage from './pages/PublicPage'
 import CreateLink from './pages/CreateLink'
 import EditPage from './pages/EditPage'
 import EditLink from './pages/EditLink'
+import Messages from './pages/Messages'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/messages" element={<Messages />} />
         <Route path="/create-page" element={<CreatePage />} />
         <Route path="/pages/:slug" element={<EditPage />} />
         <Route path="/create-link" element={<CreateLink />} />

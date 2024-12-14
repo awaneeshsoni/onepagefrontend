@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import linkService from "../services/linkService";
 import { useNavigate, useParams } from "react-router-dom";
+import "../App.css"
 
 export default function EditLink() {
   const { slug } = useParams();
   const [title,setTitle] = useState("")
   const [url,setUrl] = useState("");
   const navigate = useNavigate();
+  const [loading , setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLinks = async () => {
@@ -17,6 +19,9 @@ export default function EditLink() {
         console.log(getLink);
       } catch (error) {
         console.error("Error fetching link:", error.message);
+      }
+      finally{
+        setLoading(false)
       }
     };
     fetchLinks();
@@ -30,6 +35,7 @@ export default function EditLink() {
       //alert("Link added successfully!");
       navigate("/dashboard");
     } catch (error) {
+      alert("error editing link!")
       console.error("Error adding link:", error.message);
     }
   };
@@ -37,6 +43,7 @@ export default function EditLink() {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Edit link</h2>
+      {loading && <div className="loader"></div>}
       <input
         type="text"
         placeholder="Link Title"
