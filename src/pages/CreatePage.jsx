@@ -88,7 +88,7 @@ const CreatePage = () => {
       />
       <input
         type="text"
-        value={slug}
+        value={description}
         onChange={(e) => setDescription(e.target.value)}
         maxLength="140" // Limit input to 140 characters
         placeholder="Enter a short description"

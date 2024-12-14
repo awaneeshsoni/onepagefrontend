@@ -6,20 +6,25 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       await authService.signup({ name, email, password });
       navigate("/dashboard");
     } catch (error) {
+      alert("Error Signing UP!")
+      setLoading(false);
       console.error("Signup failed:", error.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+    {loading ? <div className="loader"></div> : <form onSubmit={handleSubmit}>
       <h2>Signup</h2>
       <input
         type="text"
@@ -43,7 +48,8 @@ const Signup = () => {
         required
       />
       <button type="submit">Signup</button>
-    </form>
+    </form>}
+    </div>
   );
 };
 
