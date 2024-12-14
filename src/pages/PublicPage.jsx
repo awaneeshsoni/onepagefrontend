@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import pageService from "../services/pageService";
-import "../App.css";
 import messageService from "../services/messageService";
+import "../App.css";
 
 const PublicPage = () => {
   const { slug } = useParams();
@@ -57,20 +57,21 @@ const PublicPage = () => {
               <hr />
             </div>
           ))}
-          <div className="messageContainer">
-            <div>
+          {page.allowAnonymousMessages && (
+            <div className="messageContainer">
               <h4>Leave a message</h4>
-              <form onSubmit={handleMessageSubmit}>
+              <form onSubmit={handleMessageSubmit} className="whatsapp-form">
                 <textarea
+                  className="whatsapp-textarea"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Type a message"
                   required
                 />
-                <button type="submit">Send</button>
+                <button type="submit" className="whatsapp-send-button">Send</button>
               </form>
             </div>
-          </div>
+          )}
         </div>
       )}
       <p>

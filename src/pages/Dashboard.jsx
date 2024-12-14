@@ -69,6 +69,7 @@ const Dashboard = () => {
         <Link to="/messages" className="show-more-link">
             Show More
           </Link>
+          {messLoading && <div className="loader"></div>}
         {messages && messages.length > 0 ? (
           messages.slice(0, 3).map((msg) => (
             <Message key={msg._id} id={msg._id} message={msg.message} page={msg.page} onDelete={handleDeleteMessage} />

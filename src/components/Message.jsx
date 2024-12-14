@@ -4,6 +4,8 @@ import "../App.css";
 import messageService from "../services/messageService";
 
 
+
+
 const Message = ({ id, message, page, onDelete }) => {
     const handleDelete = async () => {
       try {
@@ -17,6 +19,7 @@ const Message = ({ id, message, page, onDelete }) => {
         alert("Failed to delete message.");
       }
     };
+    
   return (
     <div
       className="message-card"

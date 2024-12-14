@@ -96,15 +96,15 @@ const CreatePage = () => {
         required
       />
       <div>
-          <label>
-            <input
-              type="checkbox"
-              checked={allowMessages}
-              onChange={() => setAllowMessages((prev) => !prev)}
-            />
-            Allow Anonymous Messaging
-          </label>
-          </div>
+        <label>
+          <input
+            type="checkbox"
+            checked={allowMessages}
+            onChange={() => setAllowMessages((prev) => !prev)}
+          />
+          Allow Anonymous Messaging
+        </label>
+      </div>
       <h3>Select Links to Add</h3>
       {loading && <div className="loader"></div>}
       {links.map((link) => (
