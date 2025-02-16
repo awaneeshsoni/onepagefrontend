@@ -11,18 +11,20 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Dashboard = () => {
-  const [links, setLinks] = useState([]);
-  const [pages, setPages] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [links, setLinks] = useState(null); // Initialize to null
+  const [pages, setPages] = useState(null); // Initialize to null
+  const [messages, setMessages] = useState(null); // Initialize to null
   const [messLoading, setMessLoading] = useState(true);
   const [linkLoading, setLinkLoading] = useState(true);
   const [pageLoading, setPageLoading] = useState(true);
+  const [error, setError] = useState(null); // Add an error state
 
   useEffect(() => {
     const fetchData = async () => {
       setMessLoading(true);
       setLinkLoading(true);
       setPageLoading(true);
+      setError(null); // Clear any previous errors
 
       try {
         const [userLinks, userPages, userMess] = await Promise.all([
@@ -36,7 +38,7 @@ const Dashboard = () => {
         setMessages(userMess.data.messages || []);
       } catch (error) {
         console.error("Error fetching data:", error.message);
-        // Consider adding a user-friendly error message state
+        setError("Failed to load data. Please try again later."); // Set error message
       } finally {
         setMessLoading(false);
         setLinkLoading(false);
@@ -57,6 +59,18 @@ const Dashboard = () => {
     );
   };
 
+  if (error) {
+    return (
+      <div className="flex flex-col min-h-screen bg-gray-100">
+        <Navbar />
+        <main className="flex-grow p-8 flex items-center justify-center">
+          <p className="text-red-500">{error}</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <Navbar />
@@ -71,6 +85,8 @@ const Dashboard = () => {
               <div className="flex items-center justify-center">
                 <FaSpinner className="animate-spin text-orange-500" size={24} />
               </div>
+            ) : messages === null ? ( // Check for null
+              <p className="text-gray-600">Loading messages...</p>
             ) : messages.length > 0 ? (
               messages.slice(0, 3).map((msg) => (
                 <Message
@@ -109,6 +125,8 @@ const Dashboard = () => {
               <div className="flex items-center justify-center">
                 <FaSpinner className="animate-spin text-orange-500" size={24} />
               </div>
+            ) : pages === null ? ( // Check for null
+              <p className="text-gray-600">Loading pages...</p>
             ) : pages.length > 0 ? (
               <div className="space-y-4">
                 {pages.map((page) => (
@@ -135,6 +153,8 @@ const Dashboard = () => {
               <div className="flex items-center justify-center">
                 <FaSpinner className="animate-spin text-orange-500" size={24} />
               </div>
+            ) : links === null ? (  // Check for null
+              <p className="text-gray-600">Loading links...</p>
             ) : links.length > 0 ? (
               <div className="space-y-4">
                 {links.map((link) => (
