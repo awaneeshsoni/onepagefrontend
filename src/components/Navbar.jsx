@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { FaUserCircle } from 'react-icons/fa'; // Example icon
 
 function Navbar() {
-  const userName = localStorage.getItem("userName") || "User"; // Get user name, default to "User"
+  const username = localStorage.getItem("username") || "User"; 
+  console.log(username)// Get user name, default to "User"
 
   return (
     <header className="bg-white shadow-md py-4 mb-10"> {/* Changed here */}
@@ -14,7 +15,7 @@ function Navbar() {
         </Link>
         <div className="flex items-center space-x-2">
           <FaUserCircle className="text-gray-600 text-2xl" /> {/* User icon */}
-          <span className="text-gray-700">{userName}</span>
+          <span className="text-gray-700">{username}</span>
         </div>
       </div>
     </header>

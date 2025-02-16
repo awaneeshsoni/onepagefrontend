@@ -10,7 +10,7 @@ export function ShowLink(props) {
     try {
       await linkService.deleteLink(props.link._id);
       props.onDelete(props.link._id);
-    } catch (error) {
+    } catch (error){
       console.error("Error deleting link:", error.message);
     }
   };
@@ -21,7 +21,7 @@ export function ShowLink(props) {
         <p className="text-lg font-semibold text-gray-800">{props.link.title}</p>
         <div className="space-x-2">
           <a
-            href={props.link.url}
+            href={props.link.url.startsWith("http") ? props.link.url : `https://${props.link.url}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-orange-500 text-white py-2 px-4 rounded-full hover:bg-orange-600 transition duration-200 text-sm font-semibold"

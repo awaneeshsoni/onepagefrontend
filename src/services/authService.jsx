@@ -23,9 +23,10 @@ const authService = {
    */
   login: async (data) => {
     const response = await axios.post(`${API}/auth/login`, data);
-    const { token } = response.data;
+    const { token, username } = response.data;
     if (token) {
       localStorage.setItem("token", token); // Save token to localStorage
+      localStorage.setItem("username", username); // Save token to localStorage
     }
     return response.data;
   },
